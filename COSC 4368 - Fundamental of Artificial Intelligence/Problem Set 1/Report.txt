@@ -1,0 +1,66 @@
+    The program went through roughly 4 iterations in order to reach its current state. Originally I attempted to use recurssion 
+but it quickly exceeded recursion depth in python. The next two attempts are not worth talking about but also shared a similar problem
+to the first attempt except now it was nva count and time of execution. As such i decided to take the approach of storing known possible
+variables given mostly independent constraints and then use those results to find a combination that results in a solution.
+
+Please look at the read me file to see how the output of the code is formatted.
+
+psudeo code:
+
+generate arrays of 50 0s
+generate empty arrays to hold found variables
+
+for var1 in range(1,51) #using 1,51 because this will go from 1 to 50 if it was (1,50) it would go 1 to 49
+    for var2
+        far varX #however deep it needs to go
+            if Constraint is true
+                update array with found variables
+
+for x in range(1,51)
+    if array[x-1]!=0
+        empty array appened array[x-1]
+
+for Var in Var_Solution_Array
+    ...
+        if constraint1 is true
+            for Var in Var_Solution_Array
+                if constraint2 is true
+                    ...
+                        if Last_Constraint is true
+                            Solution found!
+
+    This is the general structure for my code which is repeated for each problem using the found variables from the previous problems as a foundation.
+In short you take a given constraint and then find all variables in range 1 to 50 that fall within the given constraint. Then Using the found variables
+and other constraints find other possible variables that meet those constraints. I stored these variables in an attempt reduce complexity later
+when the code attempts to find the solution set for the given constraints for the given problems. 
+
+    I was able to get Problem A down to about 6000 nva without storing variables but the next problems kept growing in size. As such i chose to store 
+the variables and front load the nva but reduce it later. Now another large part towards nva manipulation is with b and c variables. Since in Problem
+A they are "free" variables you find that they can be any value from 1 to 29, however looking at Problem B you can find that B and C can only be either
+1 or 2. As such i hardcoded those two values into the arrays without calculating them inside the code. I justify this by in order to calculate these values
+you actually have to check it against all constraints so technically you find a solution to the Set which should end the code at that point. I also used
+this knowledge to restrict the range of my for loops to start and end where there were possible values for a variable. It is important to point out that I 
+worked on these constraints on paper and found almost similar results but the computer was able to do it faster than i could and more accuratly so I used matlab
+to find these value ranges. Now I did not do this for Problem C and some of B due to their only being one possible solution to the variable so i gave it a range 
+of 10 around that variable. Finally the last thing i did to reduce the nva is to change the order of my for loops. I did not optimize all of the for loops but 
+serveral were dropped from 15000+ to only a few hundred by just changeing their order.
+
+    Just for a frame of reference below are all the values i for for A B C D E and F given the first 4 constraints. As stated above B and C give a solution set
+therefore i wasn't able to code that specific part into problem A.
+
+A = [7, 13, 28, 31, 34, 42]
+B = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+D = [23, 25, 31, 33, 40, 44, 47, 49]
+E = [2, 4, 7, 8, 13, 16]
+F = [2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 24, 26]
+
+    Now to deiscus why my code is general. You can easily change the for ranges (and implament a search for additional variables) as well as changing the if
+statements to account for different constraints. Really not much more to say than that.
+
+Things i still want to improve in this code:
+
+    Further optimize the for loops if possible to require less iterations to reduce nva. For example would problems B and C be better if done in a different 
+order of searches considering some variables in B and all variables in C came up to be only a single value. Also implament parallel programming into the 
+solution set search so as to not have to spend time looking for the solution to the individual problem while i am calculating other values. I also would like 
+to attempt this without storing values to see if this approach actually in the end saved on nva or if it made it worse.
