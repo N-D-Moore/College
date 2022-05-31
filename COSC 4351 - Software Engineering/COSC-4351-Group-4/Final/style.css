@@ -1,0 +1,30 @@
+@charset "utf-8";
+.container-fluid {
+	background-color: #000000;
+}
+.container-fluid .container .navbar.navbar-expand-lg.navbar-light.bg-light {
+	background-color: #FFFFFF;
+}
+.navbar-nav.ml-auto .nav-item.active .nav-link {
+	color: #000000;
+	font-size: x-large;
+}
+.card.col-md-4.col-xl-12 .card-body .btn.btn-primary {
+	background-color: #3B3A3A;
+}
+.container-fluid .container {
+	background-color: #FFFFFF;
+}
+.container .row .signup-form {
+	text-align: center;
+	margin-right: 0px;
+	padding-right: 20px;
+
+}
+.wrapper {
+    text-align : center;
+}
+.image, .form {
+    display: inline-block;
+    vertical-align: top;
+}
